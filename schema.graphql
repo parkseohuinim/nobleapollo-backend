@@ -1,19 +1,49 @@
-type Book {
+type Post {
+  id: Int
   title: String
-  author: String
+  createdAt: String
+  content: String
+  published: Boolean
+  author: User
+  authorId: Int
 }
 
-type AddBookMutationResponse {
+type Profile {
+  id: Int
+  bio: String
+  user: User
+  userId: Int
+}
+
+type User {
+  id: Int
+  email: String
+  name: String
+  posts: [Post]
+  profile: Profile
+}
+
+type UpsertPostMutationResponse {
   code: String!
   success: Boolean!
   message: String!
-  book: Book
+  post: Post
+}
+
+type DeletePostMutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  post: Post
 }
 
 type Query {
-  books: [Book]
+  posts: [Post]
+  profiles: [Profile]
+  users: [User]
 }
 
 type Mutation {
-  addBook(title: String, author: String): AddBookMutationResponse
+  upsertPost(id: Int, title: String, content: String, authorId: Int): UpsertPostMutationResponse
+  deletePost(id: Int): DeletePostMutationResponse
 }

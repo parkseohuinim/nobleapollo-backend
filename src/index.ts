@@ -2,14 +2,20 @@ import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { readFileSync } from 'fs';
 
-const books = [
+const posts = [
   {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
+    id: 1,
+    title: "My first post...",
+    createdAt: "2021",
+    content: "content is empty",
+    published: true
   },
   {
-    title: 'City of Glass',
-    author: 'Paul Auster',
+    id: 2,
+    title: "My second post...",
+    createdAt: "2022",
+    content: "content is empty",
+    published: true
   },
 ];
 
@@ -17,7 +23,7 @@ const typeDefs = readFileSync('./schema.graphql', { encoding: 'utf-8' });
 
 const resolvers = {
   Query: {
-    books: () => books,
+    posts: () => posts,
   },
 };
 
